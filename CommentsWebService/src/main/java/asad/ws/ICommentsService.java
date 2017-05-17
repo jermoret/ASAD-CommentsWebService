@@ -12,5 +12,6 @@ import java.util.List;
 public interface ICommentsService {
     boolean addComment(Comment comment);
     List<Comment> getComments();
+    List<Comment> getCommentsForSubject(String subject);
     String deleteComment(Comment comment);
 }
