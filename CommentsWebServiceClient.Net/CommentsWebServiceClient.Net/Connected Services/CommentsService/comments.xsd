@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://ws.asad/" targetNamespace="http://ws.asad/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="addComment" type="tns:addComment" />
+  <xs:element name="addCommentResponse" type="tns:addCommentResponse" />
+  <xs:element name="deleteComment" type="tns:deleteComment" />
+  <xs:element name="deleteCommentResponse" type="tns:deleteCommentResponse" />
+  <xs:element name="getComments" type="tns:getComments" />
+  <xs:element name="getCommentsForSubject" type="tns:getCommentsForSubject" />
+  <xs:element name="getCommentsForSubjectResponse" type="tns:getCommentsForSubjectResponse" />
+  <xs:element name="getCommentsResponse" type="tns:getCommentsResponse" />
+  <xs:complexType name="getComments">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getCommentsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:comment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="comment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comment" type="xs:string" />
+      <xs:element minOccurs="0" name="pseudo" type="xs:string" />
+      <xs:element minOccurs="0" name="subject" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addComment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:comment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addCommentResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCommentsForSubject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCommentsForSubjectResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:comment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteComment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:comment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteCommentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

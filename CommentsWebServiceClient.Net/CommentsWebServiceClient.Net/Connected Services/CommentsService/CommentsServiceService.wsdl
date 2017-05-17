@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://ws.asad/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="CommentsServiceService" targetNamespace="http://ws.asad/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://127.0.0.1:8001/comments?xsd=1" namespace="http://ws.asad/" />
+    </xsd:schema>
+  </types>
+  <message name="getCommentsForSubject">
+    <part name="parameters" element="tns:getCommentsForSubject" />
+  </message>
+  <message name="getCommentsForSubjectResponse">
+    <part name="parameters" element="tns:getCommentsForSubjectResponse" />
+  </message>
+  <message name="addComment">
+    <part name="parameters" element="tns:addComment" />
+  </message>
+  <message name="addCommentResponse">
+    <part name="parameters" element="tns:addCommentResponse" />
+  </message>
+  <message name="deleteComment">
+    <part name="parameters" element="tns:deleteComment" />
+  </message>
+  <message name="deleteCommentResponse">
+    <part name="parameters" element="tns:deleteCommentResponse" />
+  </message>
+  <message name="getComments">
+    <part name="parameters" element="tns:getComments" />
+  </message>
+  <message name="getCommentsResponse">
+    <part name="parameters" element="tns:getCommentsResponse" />
+  </message>
+  <portType name="ICommentsService">
+    <operation name="getCommentsForSubject">
+      <input wsam:Action="http://ws.asad/ICommentsService/getCommentsForSubjectRequest" message="tns:getCommentsForSubject" />
+      <output wsam:Action="http://ws.asad/ICommentsService/getCommentsForSubjectResponse" message="tns:getCommentsForSubjectResponse" />
+    </operation>
+    <operation name="addComment">
+      <input wsam:Action="http://ws.asad/ICommentsService/addCommentRequest" message="tns:addComment" />
+      <output wsam:Action="http://ws.asad/ICommentsService/addCommentResponse" message="tns:addCommentResponse" />
+    </operation>
+    <operation name="deleteComment">
+      <input wsam:Action="http://ws.asad/ICommentsService/deleteCommentRequest" message="tns:deleteComment" />
+      <output wsam:Action="http://ws.asad/ICommentsService/deleteCommentResponse" message="tns:deleteCommentResponse" />
+    </operation>
+    <operation name="getComments">
+      <input wsam:Action="http://ws.asad/ICommentsService/getCommentsRequest" message="tns:getComments" />
+      <output wsam:Action="http://ws.asad/ICommentsService/getCommentsResponse" message="tns:getCommentsResponse" />
+    </operation>
+  </portType>
+  <binding name="CommentsServicePortBinding" type="tns:ICommentsService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="getCommentsForSubject">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="addComment">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="deleteComment">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getComments">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="CommentsServiceService">
+    <port name="CommentsServicePort" binding="tns:CommentsServicePortBinding">
+      <soap:address location="http://127.0.0.1:8001/comments" />
+    </port>
+  </service>
+</definitions>

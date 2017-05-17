@@ -1,13 +1,16 @@
-package asad.ws; /**
+/**
  * Auteur    : Moret Jérôme
  * Date      : 16/05/2017
  * Version   : 1.0
  */
 
+package asad.ws;
+
 import javax.jws.WebService;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 @WebService(endpointInterface= "asad.ws.ICommentsService")
 public class CommentsService implements ICommentsService {
@@ -20,6 +23,17 @@ public class CommentsService implements ICommentsService {
     public List<Comment> getComments() {
         return comments;
     }
+
+    public List<Comment> getCommentsForSubject(String subject) {
+        List<Comment> commentsFiltred = new ArrayList<Comment>();
+        for (Comment comment: comments) {
+            if (Objects.equals(comment.getSubject(), subject)) {
+                commentsFiltred.add(comment);
+            }
+        }
+        return commentsFiltred;
+    }
+
 
     public String deleteComment(Comment comment) {
         boolean deleted = false;
