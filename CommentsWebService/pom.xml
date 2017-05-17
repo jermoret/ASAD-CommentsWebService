@@ -7,25 +7,14 @@
     <groupId>ch.hes-so.app</groupId>
     <artifactId>comments-web-service</artifactId>
     <version>1</version>
+    <packaging>war</packaging>
 
-    <dependency>
-        <groupId>javax.xml.ws</groupId>
-        <artifactId>jaxws-api</artifactId>
-        <version>2.2.11</version>
-    </dependency>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.2.5</version>
+        </dependency>
+    </dependencies>
 
 </project>
