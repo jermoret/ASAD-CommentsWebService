@@ -1,11 +1,12 @@
-package asad.ws; /**
+/**
  * Auteur    : Moret Jérôme
  * Date      : 16/05/2017
  * Version   : 1.0
  */
-import javax.jws.*;
-import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.Style;
+
+package asad.ws;
+
+import javax.jws.WebService;
 import java.util.List;
 
 @WebService
