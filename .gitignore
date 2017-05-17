@@ -1,3 +1,8 @@
 *.iml
 CommentsWebService/.idea
 CommentsWebService/target
+bin
+obj
+packages
+*.suo
+.vs
