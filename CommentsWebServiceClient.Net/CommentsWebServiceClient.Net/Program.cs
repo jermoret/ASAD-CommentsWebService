@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using CommentsWebServiceClient.Net.CommentsService;
 using Faker;
 
@@ -10,6 +11,7 @@ namespace CommentsWebServiceClient.Net
         {
             var service = new CommentsServiceClient();
             var loop = true;
+            var user = new user();
             while (loop)
             {
                 Console.WriteLine();
@@ -20,6 +22,7 @@ namespace CommentsWebServiceClient.Net
                 Console.WriteLine(" 4: Seed 10 comments");
                 Console.WriteLine(" 5: Delete all comments");
                 Console.WriteLine(" 6: List comments for subject");
+                Console.WriteLine(" 7: Change authentification");
                 Console.WriteLine(" 0: End the program");
                 Console.Write("Choice : ");
                 byte choice;
@@ -32,7 +35,7 @@ namespace CommentsWebServiceClient.Net
                             break;
                         case 1:
                         {
-                            var comments = service.getComments();
+                            var comments = service.getComments(user) ?? new comment[0];
                             foreach (var comment in comments)
                             {
                                 Console.WriteLine($"subject  : {comment.subject}");
@@ -53,7 +56,7 @@ namespace CommentsWebServiceClient.Net
                             comment.pseudo = Console.ReadLine();
                             Console.Write("comment : ");
                             comment.comment1 = Console.ReadLine();
-                            var result = service.addComment(comment);
+                            var result = service.addComment(user, comment);
                             Console.WriteLine($"Result : {result}");
                             break;
                         }
@@ -66,7 +69,7 @@ namespace CommentsWebServiceClient.Net
                             comment.pseudo = Console.ReadLine();
                             Console.Write("comment : ");
                             comment.comment1 = Console.ReadLine();
-                            var result = service.deleteComment(comment);
+                            var result = service.deleteComment(user, comment);
                             Console.WriteLine($"Result : {result}");
                             break;
                         }
@@ -74,7 +77,7 @@ namespace CommentsWebServiceClient.Net
                         {
                             for (var i = 0; i < 10; ++i)
                             {
-                                service.addComment(new comment
+                                service.addComment(user, new comment
                                 {
                                     subject = Lorem.Sentence(1),
                                     pseudo = Lorem.Sentence(1),
@@ -85,10 +88,10 @@ namespace CommentsWebServiceClient.Net
                         }
                         case 5:
                         {
-                            var comments = service.getComments();
+                            var comments = service.getComments(user);
                             foreach (var comment in comments)
                             {
-                                service.deleteComment(comment);
+                                service.deleteComment(user, comment);
                             }
                             Console.WriteLine("Done");
                             break;
@@ -98,7 +101,7 @@ namespace CommentsWebServiceClient.Net
                             Console.Write("Subject : ");
                             var subject = Console.ReadLine();
                             Console.WriteLine();
-                            var comments = service.getCommentsForSubject(subject);
+                            var comments = service.getCommentsForSubject(user, subject) ?? new comment[0];
                             foreach (var comment in comments)
                             {
                                 Console.WriteLine($"subject  : {comment.subject}");
@@ -108,6 +111,14 @@ namespace CommentsWebServiceClient.Net
                             }
                             Console.WriteLine($"Total number : {comments.Length}");
                             Console.WriteLine();
+                            break;
+                        }
+                        case 7:
+                        {
+                            Console.Write("login : ");
+                            user.login = Console.ReadLine();
+                            Console.Write("pass  : ");
+                            user.pass = Console.ReadLine();
                             break;
                         }
                         default:

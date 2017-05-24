@@ -9,7 +9,15 @@
   <xs:element name="getCommentsForSubjectResponse" type="tns:getCommentsForSubjectResponse" />
   <xs:element name="getCommentsResponse" type="tns:getCommentsResponse" />
   <xs:complexType name="getComments">
-    <xs:sequence />
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:user" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="user">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string" />
+      <xs:element minOccurs="0" name="pass" type="xs:string" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getCommentsResponse">
     <xs:sequence>
@@ -25,7 +33,8 @@
   </xs:complexType>
   <xs:complexType name="addComment">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:comment" />
+      <xs:element minOccurs="0" name="arg0" type="tns:user" />
+      <xs:element minOccurs="0" name="arg1" type="tns:comment" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="addCommentResponse">
@@ -35,7 +44,8 @@
   </xs:complexType>
   <xs:complexType name="getCommentsForSubject">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element minOccurs="0" name="arg0" type="tns:user" />
+      <xs:element minOccurs="0" name="arg1" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getCommentsForSubjectResponse">
@@ -45,7 +55,8 @@
   </xs:complexType>
   <xs:complexType name="deleteComment">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:comment" />
+      <xs:element minOccurs="0" name="arg0" type="tns:user" />
+      <xs:element minOccurs="0" name="arg1" type="tns:comment" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="deleteCommentResponse">

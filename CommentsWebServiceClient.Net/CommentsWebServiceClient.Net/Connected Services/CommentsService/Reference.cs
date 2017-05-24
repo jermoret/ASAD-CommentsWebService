@@ -25,15 +25,6 @@ namespace CommentsWebServiceClient.Net.CommentsService {
         System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.getCommentsForSubjectResponse> getCommentsForSubjectAsync(CommentsWebServiceClient.Net.CommentsService.getCommentsForSubjectRequest request);
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws.asad/ICommentsService/addCommentRequest", ReplyAction="http://ws.asad/ICommentsService/addCommentResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        CommentsWebServiceClient.Net.CommentsService.addCommentResponse addComment(CommentsWebServiceClient.Net.CommentsService.addCommentRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws.asad/ICommentsService/addCommentRequest", ReplyAction="http://ws.asad/ICommentsService/addCommentResponse")]
-        System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.addCommentResponse> addCommentAsync(CommentsWebServiceClient.Net.CommentsService.addCommentRequest request);
-        
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.asad/ICommentsService/deleteCommentRequest", ReplyAction="http://ws.asad/ICommentsService/deleteCommentResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -43,6 +34,15 @@ namespace CommentsWebServiceClient.Net.CommentsService {
         System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.deleteCommentResponse> deleteCommentAsync(CommentsWebServiceClient.Net.CommentsService.deleteCommentRequest request);
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://ws.asad/ICommentsService/addCommentRequest", ReplyAction="http://ws.asad/ICommentsService/addCommentResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        CommentsWebServiceClient.Net.CommentsService.addCommentResponse addComment(CommentsWebServiceClient.Net.CommentsService.addCommentRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://ws.asad/ICommentsService/addCommentRequest", ReplyAction="http://ws.asad/ICommentsService/addCommentResponse")]
+        System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.addCommentResponse> addCommentAsync(CommentsWebServiceClient.Net.CommentsService.addCommentRequest request);
+        
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.asad/ICommentsService/getCommentsRequest", ReplyAction="http://ws.asad/ICommentsService/getCommentsResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -50,6 +50,52 @@ namespace CommentsWebServiceClient.Net.CommentsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.asad/ICommentsService/getCommentsRequest", ReplyAction="http://ws.asad/ICommentsService/getCommentsResponse")]
         System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.getCommentsResponse> getCommentsAsync(CommentsWebServiceClient.Net.CommentsService.getCommentsRequest request);
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.asad/")]
+    public partial class user : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string loginField;
+        
+        private string passField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
+        public string login {
+            get {
+                return this.loginField;
+            }
+            set {
+                this.loginField = value;
+                this.RaisePropertyChanged("login");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string pass {
+            get {
+                return this.passField;
+            }
+            set {
+                this.passField = value;
+                this.RaisePropertyChanged("pass");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     /// <remarks/>
@@ -120,13 +166,18 @@ namespace CommentsWebServiceClient.Net.CommentsService {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.asad/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string arg0;
+        public CommentsWebServiceClient.Net.CommentsService.user arg0;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.asad/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string arg1;
         
         public getCommentsForSubjectRequest() {
         }
         
-        public getCommentsForSubjectRequest(string arg0) {
+        public getCommentsForSubjectRequest(CommentsWebServiceClient.Net.CommentsService.user arg0, string arg1) {
             this.arg0 = arg0;
+            this.arg1 = arg1;
         }
     }
     
@@ -151,54 +202,23 @@ namespace CommentsWebServiceClient.Net.CommentsService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="addComment", WrapperNamespace="http://ws.asad/", IsWrapped=true)]
-    public partial class addCommentRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.asad/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public CommentsWebServiceClient.Net.CommentsService.comment arg0;
-        
-        public addCommentRequest() {
-        }
-        
-        public addCommentRequest(CommentsWebServiceClient.Net.CommentsService.comment arg0) {
-            this.arg0 = arg0;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="addCommentResponse", WrapperNamespace="http://ws.asad/", IsWrapped=true)]
-    public partial class addCommentResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.asad/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool @return;
-        
-        public addCommentResponse() {
-        }
-        
-        public addCommentResponse(bool @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="deleteComment", WrapperNamespace="http://ws.asad/", IsWrapped=true)]
     public partial class deleteCommentRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.asad/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public CommentsWebServiceClient.Net.CommentsService.comment arg0;
+        public CommentsWebServiceClient.Net.CommentsService.user arg0;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.asad/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public CommentsWebServiceClient.Net.CommentsService.comment arg1;
         
         public deleteCommentRequest() {
         }
         
-        public deleteCommentRequest(CommentsWebServiceClient.Net.CommentsService.comment arg0) {
+        public deleteCommentRequest(CommentsWebServiceClient.Net.CommentsService.user arg0, CommentsWebServiceClient.Net.CommentsService.comment arg1) {
             this.arg0 = arg0;
+            this.arg1 = arg1;
         }
     }
     
@@ -223,10 +243,59 @@ namespace CommentsWebServiceClient.Net.CommentsService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="addComment", WrapperNamespace="http://ws.asad/", IsWrapped=true)]
+    public partial class addCommentRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.asad/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public CommentsWebServiceClient.Net.CommentsService.user arg0;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.asad/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public CommentsWebServiceClient.Net.CommentsService.comment arg1;
+        
+        public addCommentRequest() {
+        }
+        
+        public addCommentRequest(CommentsWebServiceClient.Net.CommentsService.user arg0, CommentsWebServiceClient.Net.CommentsService.comment arg1) {
+            this.arg0 = arg0;
+            this.arg1 = arg1;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="addCommentResponse", WrapperNamespace="http://ws.asad/", IsWrapped=true)]
+    public partial class addCommentResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.asad/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool @return;
+        
+        public addCommentResponse() {
+        }
+        
+        public addCommentResponse(bool @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getComments", WrapperNamespace="http://ws.asad/", IsWrapped=true)]
     public partial class getCommentsRequest {
         
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.asad/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public CommentsWebServiceClient.Net.CommentsService.user arg0;
+        
         public getCommentsRequest() {
+        }
+        
+        public getCommentsRequest(CommentsWebServiceClient.Net.CommentsService.user arg0) {
+            this.arg0 = arg0;
         }
     }
     
@@ -280,9 +349,10 @@ namespace CommentsWebServiceClient.Net.CommentsService {
             return base.Channel.getCommentsForSubject(request);
         }
         
-        public CommentsWebServiceClient.Net.CommentsService.comment[] getCommentsForSubject(string arg0) {
+        public CommentsWebServiceClient.Net.CommentsService.comment[] getCommentsForSubject(CommentsWebServiceClient.Net.CommentsService.user arg0, string arg1) {
             CommentsWebServiceClient.Net.CommentsService.getCommentsForSubjectRequest inValue = new CommentsWebServiceClient.Net.CommentsService.getCommentsForSubjectRequest();
             inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
             CommentsWebServiceClient.Net.CommentsService.getCommentsForSubjectResponse retVal = ((CommentsWebServiceClient.Net.CommentsService.ICommentsService)(this)).getCommentsForSubject(inValue);
             return retVal.@return;
         }
@@ -292,33 +362,11 @@ namespace CommentsWebServiceClient.Net.CommentsService {
             return base.Channel.getCommentsForSubjectAsync(request);
         }
         
-        public System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.getCommentsForSubjectResponse> getCommentsForSubjectAsync(string arg0) {
+        public System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.getCommentsForSubjectResponse> getCommentsForSubjectAsync(CommentsWebServiceClient.Net.CommentsService.user arg0, string arg1) {
             CommentsWebServiceClient.Net.CommentsService.getCommentsForSubjectRequest inValue = new CommentsWebServiceClient.Net.CommentsService.getCommentsForSubjectRequest();
             inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
             return ((CommentsWebServiceClient.Net.CommentsService.ICommentsService)(this)).getCommentsForSubjectAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CommentsWebServiceClient.Net.CommentsService.addCommentResponse CommentsWebServiceClient.Net.CommentsService.ICommentsService.addComment(CommentsWebServiceClient.Net.CommentsService.addCommentRequest request) {
-            return base.Channel.addComment(request);
-        }
-        
-        public bool addComment(CommentsWebServiceClient.Net.CommentsService.comment arg0) {
-            CommentsWebServiceClient.Net.CommentsService.addCommentRequest inValue = new CommentsWebServiceClient.Net.CommentsService.addCommentRequest();
-            inValue.arg0 = arg0;
-            CommentsWebServiceClient.Net.CommentsService.addCommentResponse retVal = ((CommentsWebServiceClient.Net.CommentsService.ICommentsService)(this)).addComment(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.addCommentResponse> CommentsWebServiceClient.Net.CommentsService.ICommentsService.addCommentAsync(CommentsWebServiceClient.Net.CommentsService.addCommentRequest request) {
-            return base.Channel.addCommentAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.addCommentResponse> addCommentAsync(CommentsWebServiceClient.Net.CommentsService.comment arg0) {
-            CommentsWebServiceClient.Net.CommentsService.addCommentRequest inValue = new CommentsWebServiceClient.Net.CommentsService.addCommentRequest();
-            inValue.arg0 = arg0;
-            return ((CommentsWebServiceClient.Net.CommentsService.ICommentsService)(this)).addCommentAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -326,9 +374,10 @@ namespace CommentsWebServiceClient.Net.CommentsService {
             return base.Channel.deleteComment(request);
         }
         
-        public string deleteComment(CommentsWebServiceClient.Net.CommentsService.comment arg0) {
+        public string deleteComment(CommentsWebServiceClient.Net.CommentsService.user arg0, CommentsWebServiceClient.Net.CommentsService.comment arg1) {
             CommentsWebServiceClient.Net.CommentsService.deleteCommentRequest inValue = new CommentsWebServiceClient.Net.CommentsService.deleteCommentRequest();
             inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
             CommentsWebServiceClient.Net.CommentsService.deleteCommentResponse retVal = ((CommentsWebServiceClient.Net.CommentsService.ICommentsService)(this)).deleteComment(inValue);
             return retVal.@return;
         }
@@ -338,10 +387,36 @@ namespace CommentsWebServiceClient.Net.CommentsService {
             return base.Channel.deleteCommentAsync(request);
         }
         
-        public System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.deleteCommentResponse> deleteCommentAsync(CommentsWebServiceClient.Net.CommentsService.comment arg0) {
+        public System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.deleteCommentResponse> deleteCommentAsync(CommentsWebServiceClient.Net.CommentsService.user arg0, CommentsWebServiceClient.Net.CommentsService.comment arg1) {
             CommentsWebServiceClient.Net.CommentsService.deleteCommentRequest inValue = new CommentsWebServiceClient.Net.CommentsService.deleteCommentRequest();
             inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
             return ((CommentsWebServiceClient.Net.CommentsService.ICommentsService)(this)).deleteCommentAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CommentsWebServiceClient.Net.CommentsService.addCommentResponse CommentsWebServiceClient.Net.CommentsService.ICommentsService.addComment(CommentsWebServiceClient.Net.CommentsService.addCommentRequest request) {
+            return base.Channel.addComment(request);
+        }
+        
+        public bool addComment(CommentsWebServiceClient.Net.CommentsService.user arg0, CommentsWebServiceClient.Net.CommentsService.comment arg1) {
+            CommentsWebServiceClient.Net.CommentsService.addCommentRequest inValue = new CommentsWebServiceClient.Net.CommentsService.addCommentRequest();
+            inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
+            CommentsWebServiceClient.Net.CommentsService.addCommentResponse retVal = ((CommentsWebServiceClient.Net.CommentsService.ICommentsService)(this)).addComment(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.addCommentResponse> CommentsWebServiceClient.Net.CommentsService.ICommentsService.addCommentAsync(CommentsWebServiceClient.Net.CommentsService.addCommentRequest request) {
+            return base.Channel.addCommentAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.addCommentResponse> addCommentAsync(CommentsWebServiceClient.Net.CommentsService.user arg0, CommentsWebServiceClient.Net.CommentsService.comment arg1) {
+            CommentsWebServiceClient.Net.CommentsService.addCommentRequest inValue = new CommentsWebServiceClient.Net.CommentsService.addCommentRequest();
+            inValue.arg0 = arg0;
+            inValue.arg1 = arg1;
+            return ((CommentsWebServiceClient.Net.CommentsService.ICommentsService)(this)).addCommentAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -349,8 +424,9 @@ namespace CommentsWebServiceClient.Net.CommentsService {
             return base.Channel.getComments(request);
         }
         
-        public CommentsWebServiceClient.Net.CommentsService.comment[] getComments() {
+        public CommentsWebServiceClient.Net.CommentsService.comment[] getComments(CommentsWebServiceClient.Net.CommentsService.user arg0) {
             CommentsWebServiceClient.Net.CommentsService.getCommentsRequest inValue = new CommentsWebServiceClient.Net.CommentsService.getCommentsRequest();
+            inValue.arg0 = arg0;
             CommentsWebServiceClient.Net.CommentsService.getCommentsResponse retVal = ((CommentsWebServiceClient.Net.CommentsService.ICommentsService)(this)).getComments(inValue);
             return retVal.@return;
         }
@@ -360,8 +436,9 @@ namespace CommentsWebServiceClient.Net.CommentsService {
             return base.Channel.getCommentsAsync(request);
         }
         
-        public System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.getCommentsResponse> getCommentsAsync() {
+        public System.Threading.Tasks.Task<CommentsWebServiceClient.Net.CommentsService.getCommentsResponse> getCommentsAsync(CommentsWebServiceClient.Net.CommentsService.user arg0) {
             CommentsWebServiceClient.Net.CommentsService.getCommentsRequest inValue = new CommentsWebServiceClient.Net.CommentsService.getCommentsRequest();
+            inValue.arg0 = arg0;
             return ((CommentsWebServiceClient.Net.CommentsService.ICommentsService)(this)).getCommentsAsync(inValue);
         }
     }

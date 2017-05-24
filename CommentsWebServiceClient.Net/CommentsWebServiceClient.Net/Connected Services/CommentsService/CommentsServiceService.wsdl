@@ -11,17 +11,17 @@
   <message name="getCommentsForSubjectResponse">
     <part name="parameters" element="tns:getCommentsForSubjectResponse" />
   </message>
-  <message name="addComment">
-    <part name="parameters" element="tns:addComment" />
-  </message>
-  <message name="addCommentResponse">
-    <part name="parameters" element="tns:addCommentResponse" />
-  </message>
   <message name="deleteComment">
     <part name="parameters" element="tns:deleteComment" />
   </message>
   <message name="deleteCommentResponse">
     <part name="parameters" element="tns:deleteCommentResponse" />
+  </message>
+  <message name="addComment">
+    <part name="parameters" element="tns:addComment" />
+  </message>
+  <message name="addCommentResponse">
+    <part name="parameters" element="tns:addCommentResponse" />
   </message>
   <message name="getComments">
     <part name="parameters" element="tns:getComments" />
@@ -34,13 +34,13 @@
       <input wsam:Action="http://ws.asad/ICommentsService/getCommentsForSubjectRequest" message="tns:getCommentsForSubject" />
       <output wsam:Action="http://ws.asad/ICommentsService/getCommentsForSubjectResponse" message="tns:getCommentsForSubjectResponse" />
     </operation>
-    <operation name="addComment">
-      <input wsam:Action="http://ws.asad/ICommentsService/addCommentRequest" message="tns:addComment" />
-      <output wsam:Action="http://ws.asad/ICommentsService/addCommentResponse" message="tns:addCommentResponse" />
-    </operation>
     <operation name="deleteComment">
       <input wsam:Action="http://ws.asad/ICommentsService/deleteCommentRequest" message="tns:deleteComment" />
       <output wsam:Action="http://ws.asad/ICommentsService/deleteCommentResponse" message="tns:deleteCommentResponse" />
+    </operation>
+    <operation name="addComment">
+      <input wsam:Action="http://ws.asad/ICommentsService/addCommentRequest" message="tns:addComment" />
+      <output wsam:Action="http://ws.asad/ICommentsService/addCommentResponse" message="tns:addCommentResponse" />
     </operation>
     <operation name="getComments">
       <input wsam:Action="http://ws.asad/ICommentsService/getCommentsRequest" message="tns:getComments" />
@@ -58,7 +58,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="addComment">
+    <operation name="deleteComment">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -67,7 +67,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="deleteComment">
+    <operation name="addComment">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

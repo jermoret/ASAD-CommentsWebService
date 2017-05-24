@@ -12,6 +12,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Aspect
 public class LoginAspect {
@@ -21,9 +22,8 @@ public class LoginAspect {
     @Around("execution(* asad.ws.CommentsService.addComment(..))")
     public Object addCommentAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs(); // change the args if you want to
-        Comment comment = (Comment) args[0];
-        User user = (User) args[1];
-
+        Comment comment = (Comment) args[1];
+        User user = (User) args[0];
         Object retVal;
         if(authentificationService.IsValid(user.getLogin(), user.getPass()) && user.getLogin().equals(comment.getPseudo())) {
             retVal = joinPoint.proceed(args); // run the actual method (or don't)
@@ -49,5 +49,25 @@ public class LoginAspect {
             retVal = "You must give the correct credentials to delete a comment";
         }
         return retVal;
+    }
+    
+    @Around("execution(* asad.ws.CommentsService.getComments(..))")
+    public Object getCommentsAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        Object[] args = joinPoint.getArgs();
+        User user = (User) args[0];
+        List<Comment> comments = (List<Comment>) joinPoint.proceed(args);
+        if(!authentificationService.IsValid(user.getLogin(), user.getPass())) {
+            for(Comment comment : comments) {
+                comment.setComment(null);
+                comment.setPseudo(null);
+                comment.setSubject(null);
+            }
+        }
+        return comments;
+    }
+
+    @Around("execution(* asad.ws.CommentsService.getCommentsForSubject(..))")
+    public Object getCommentsForSubject(ProceedingJoinPoint joinPoint) throws Throwable {
+        return getCommentsAround(joinPoint);
     }
 }
