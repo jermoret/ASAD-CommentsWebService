@@ -5,6 +5,7 @@
  */
 package asad.aspect;
 
+import asad.ws.Comment;
 import asad.ws.User;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -19,6 +20,21 @@ public class LoginAspect {
 
     @Around("execution(* asad.ws.CommentsService.addComment(..))")
     public Object addCommentAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        Object[] args = joinPoint.getArgs(); // change the args if you want to
+        Comment comment = (Comment) args[0];
+        User user = (User) args[1];
+
+        Object retVal;
+        if(authentificationService.IsValid(user.getLogin(), user.getPass()) && user.getLogin().equals(comment.getPseudo())) {
+            retVal = joinPoint.proceed(args); // run the actual method (or don't)
+        } else {
+            retVal = false;
+        }
+        return retVal;
+    }
+
+    @Around("execution(* asad.ws.CommentsService.deleteComment(..))")
+    public Object deleteCommentAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs(); // change the args if you want to
         User user = (User) args[1];
         Object retVal;
