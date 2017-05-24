@@ -37,11 +37,16 @@ public class LoginAspect {
     public Object deleteCommentAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs(); // change the args if you want to
         User user = (User) args[1];
+        Comment comment = (Comment) args[0];
+
         Object retVal;
         if(authentificationService.IsValid(user.getLogin(), user.getPass())) {
-            retVal = joinPoint.proceed(args); // run the actual method (or don't)
+            if(comment.getPseudo().equals(user.getLogin()))
+                retVal = joinPoint.proceed(args); // run the actual method (or don't)
+            else
+                retVal = "You can't delete a comment that dosen't belong to you";
         } else {
-            retVal = false;
+            retVal = "You must give the correct credentials to delete a comment";
         }
         return retVal;
     }
