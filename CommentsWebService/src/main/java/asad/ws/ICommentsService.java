@@ -11,8 +11,8 @@ import java.util.List;
 
 @WebService
 public interface ICommentsService {
-    boolean addComment(Comment comment);
-    List<Comment> getComments();
-    List<Comment> getCommentsForSubject(String subject);
-    String deleteComment(Comment comment);
+    boolean addComment(Comment comment, User user);
+    List<Comment> getComments(User user);
+    List<Comment> getCommentsForSubject(String subject, User user);
+    String deleteComment(Comment comment, User user);
 }

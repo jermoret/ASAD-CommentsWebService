@@ -16,15 +16,16 @@ import java.util.Objects;
 public class CommentsService implements ICommentsService {
     List<Comment> comments = new ArrayList<Comment>();
 
-    public boolean addComment(Comment comment) {
+    public boolean addComment(Comment comment, User user) {
+        //System.out.println("Helllllo !");
         return comments.add(comment);
     }
 
-    public List<Comment> getComments() {
+    public List<Comment> getComments(User user) {
         return comments;
     }
 
-    public List<Comment> getCommentsForSubject(String subject) {
+    public List<Comment> getCommentsForSubject(String subject, User user) {
         List<Comment> commentsFiltred = new ArrayList<Comment>();
         for (Comment comment: comments) {
             if (Objects.equals(comment.getSubject(), subject)) {
@@ -35,7 +36,7 @@ public class CommentsService implements ICommentsService {
     }
 
 
-    public String deleteComment(Comment comment) {
+    public String deleteComment(Comment comment, User user) {
         boolean deleted = false;
         for (Iterator<Comment> iterator = comments.iterator(); iterator.hasNext();) {
             Comment retrievedComment = iterator.next();
