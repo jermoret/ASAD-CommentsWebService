@@ -25,7 +25,7 @@ public class LoginAspect {
         Comment comment = (Comment) args[1];
         User user = (User) args[0];
         Object retVal;
-        if(authentificationService.IsValid(user.getLogin(), user.getPass()) && user.getLogin().equals(comment.getPseudo())) {
+        if(isUserValid(user) && user.getLogin().equals(comment.getPseudo())) {
             retVal = joinPoint.proceed(args); // run the actual method (or don't)
         } else {
             retVal = false;
@@ -36,11 +36,11 @@ public class LoginAspect {
     @Around("execution(* asad.ws.CommentsService.deleteComment(..))")
     public Object deleteCommentAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs(); // change the args if you want to
-        User user = (User) args[1];
-        Comment comment = (Comment) args[0];
+        User user = (User) args[0];
+        Comment comment = (Comment) args[1];
 
         Object retVal;
-        if(authentificationService.IsValid(user.getLogin(), user.getPass())) {
+        if(isUserValid(user)) {
             if(comment.getPseudo().equals(user.getLogin()))
                 retVal = joinPoint.proceed(args); // run the actual method (or don't)
             else
@@ -56,7 +56,7 @@ public class LoginAspect {
         Object[] args = joinPoint.getArgs();
         User user = (User) args[0];
         List<Comment> comments = (List<Comment>) joinPoint.proceed(args);
-        if(!authentificationService.IsValid(user.getLogin(), user.getPass())) {
+        if(!isUserValid(user)) {
             for(Comment comment : comments) {
                 comment.setComment(null);
                 comment.setPseudo(null);
@@ -69,5 +69,9 @@ public class LoginAspect {
     @Around("execution(* asad.ws.CommentsService.getCommentsForSubject(..))")
     public Object getCommentsForSubject(ProceedingJoinPoint joinPoint) throws Throwable {
         return getCommentsAround(joinPoint);
+    }
+
+    private Boolean isUserValid(User user) {
+        return user != null && authentificationService.IsValid(user.getLogin(), user.getPass());
     }
 }
