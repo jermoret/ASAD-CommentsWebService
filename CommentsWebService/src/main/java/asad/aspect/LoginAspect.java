@@ -11,6 +11,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -55,13 +56,15 @@ public class LoginAspect {
     public Object getCommentsAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();
         User user = (User) args[0];
-        List<Comment> comments = (List<Comment>) joinPoint.proceed(args);
+        List<Comment> comments = null;
         if(!isUserValid(user)) {
-            for(Comment comment : comments) {
-                comment.setComment(null);
-                comment.setPseudo(null);
-                comment.setSubject(null);
+            List<Comment> commentList = (List<Comment>) joinPoint.proceed(args);
+            comments = new ArrayList<Comment>();
+            for(Comment comment : commentList) {
+                comments.add(new Comment("", comment.getSubject(), ""));
             }
+        } else {
+            comments = (List<Comment>) joinPoint.proceed(args);
         }
         return comments;
     }

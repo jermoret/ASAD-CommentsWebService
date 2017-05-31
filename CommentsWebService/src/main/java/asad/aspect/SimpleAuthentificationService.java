@@ -8,7 +8,7 @@ public class SimpleAuthentificationService implements IAuthentificationService {
     private Map<String, String> users;
 
     public SimpleAuthentificationService() {
-        users = new HashMap<>();
+        users = new HashMap<String, String>();
         users.put("user1", "abcd");
         users.put("user2", "1111");
         users.put("user3", "1234");
